@@ -1,4 +1,4 @@
-const jwt = require("jsonwebttoken");
+const jwt = require("jsonwebtoken");
 const {User,Token} = require("../models");
 
 const auth = async(req,res,next) => {
@@ -28,3 +28,14 @@ const auth = async(req,res,next) => {
         })
     }
 }
+const isAdmin =(req,res,next) => {
+    if(req.user.role !== "admin"){
+        return res.status(403).send({
+            message:"You are not authorized.",
+            error
+        })
+    }
+    next();
+}
+
+module.exports = {auth, isAdmin}; 

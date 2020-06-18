@@ -1,9 +1,10 @@
 const {User, Token} = require("../models");
 const bcrypt = require("bcryptjs");
-const jwt = require("jasonwebtoken");
+const jwt = require("jsonwebtoken");
 
 
-const usercontroller = {
+
+const userController = {
     getAll(req,res){
         User.findAll()
         .then(users => res.send(users))
@@ -14,6 +15,10 @@ const usercontroller = {
     },
     async signup(req,res){
         try {
+            const hash = await bcrypt.hash(req.body.password, 10);
+            req.body.password = hash;
+            const user = await User.create(req.body);
+            res.status(201).send(user);
             
         } catch (error) {
             console.error(error);
@@ -43,7 +48,21 @@ const usercontroller = {
             console.error(error);
             res.status(500).send({message:"There was a problem trying to login user."})
         }
+    }, 
+    async delete(req,res) {
+        try {
+            const {id} = req.params;
+            await User.destroy({
+                where:{
+                    id
+                }
+            });
+            res.status(201).send({message:"User successfully deleted."})
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({message:"There was a problem trying to delete user."})
+        }
     }
 }
 
-module.exports = usercontroller;
+module.exports = userController;
