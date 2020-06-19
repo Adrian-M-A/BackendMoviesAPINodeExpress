@@ -8,13 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      token: {
+      Token: {
         type: Sequelize.STRING
       },
-      userId: {
+      UserId: {
         type: Sequelize.INTEGER
       },
-      revoked: {
+      Revoked: {
         type: Sequelize.BOOLEAN
       },
       createdAt: {

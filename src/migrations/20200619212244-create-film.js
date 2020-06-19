@@ -1,30 +1,24 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Orders', {
+    return queryInterface.createTable('Films', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      CustomerId: {
+      Title: {
         type: Sequelize.STRING
       },
-      FilmId: {
+      Overview: {
         type: Sequelize.STRING
       },
-      OrderDate: {
-        type: Sequelize.DATE
+      PosterPath: {
+        type: Sequelize.STRING
       },
-      Devolution: {
-        type: Sequelize.DATE
-      },
-      Price: {
-        type: Sequelize.INTEGER
-      },
-      Days: {
-        type: Sequelize.INTEGER
+      VoteAverage: {
+        type: Sequelize.FLOAT
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +31,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Orders');
+    return queryInterface.dropTable('Films');
   }
 };

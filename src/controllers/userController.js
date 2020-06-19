@@ -2,11 +2,13 @@ const {User, Token} = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-
-
 const userController = {
-    getAll(req,res){
-        User.findAll()
+    profile(req,res){
+        User.findOne({
+            where:{
+                email: req.body.email
+            }
+        })
         .then(users => res.send(users))
         .catch(error => {
             console.error(error);
@@ -51,10 +53,9 @@ const userController = {
     }, 
     async delete(req,res) {
         try {
-            const {id} = req.params;
             await User.destroy({
                 where:{
-                    id
+                    email: req.body.email
                 }
             });
             res.status(201).send({message:"User successfully deleted."})

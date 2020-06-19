@@ -6,7 +6,7 @@ const auth = async(req,res,next) => {
         const token = req.headers.authorization;
         const payload = jwt.verify(token,"holaAmigos");
         const user = await User.findByPk(payload.id);
-        const tokenFound= await Token.findOne({
+        const tokenFound = await Token.findOne({
             where:{
                 token: token, 
                 userId: payload.id,

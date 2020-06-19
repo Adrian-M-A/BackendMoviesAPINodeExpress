@@ -8,25 +8,28 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      Name: {
         type: Sequelize.STRING
       },
-      surnames: {
+      Surnames: {
         type: Sequelize.STRING
       },
-      birthdate: {
+      Birthdate: {
         type: Sequelize.DATE
       },
-      document: {
+      Document: {
         type: Sequelize.STRING
       },
-      phone: {
+      Phone: {
         type: Sequelize.STRING
       },
-      email: {
+      Email: {
         type: Sequelize.STRING
       },
-      password: {
+      Password: {
+        type: Sequelize.STRING
+      },
+      Role: {
         type: Sequelize.STRING
       },
       createdAt: {
