@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       Overview: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       PosterPath: {
         type: Sequelize.STRING
@@ -21,11 +21,9 @@ module.exports = {
         type: Sequelize.FLOAT
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
       }
     });

@@ -6,7 +6,7 @@ const userController = {
     profile(req,res){
         User.findOne({
             where:{
-                email: req.body.email
+                email: req.body.Email
             }
         })
         .then(users => res.send(users))
@@ -15,32 +15,32 @@ const userController = {
             res.status(500).send({message:"There was a problem trying to get users."});
         })
     },
-    async signup(req,res){
-        try {
-            const hash = await bcrypt.hash(req.body.password, 10);
-            req.body.password = hash;
-            const user = await User.create(req.body);
-            res.status(201).send(user);
-            
-        } catch (error) {
-            console.error(error);
-            res.status(500).send({message:"There was a problem trying to sign up user."});
+        async signup(req,res){
+            try {
+                const hash = await bcrypt.hash(req.body.Password, 10);
+                req.body.Password = hash;
+                const user = await User.create(req.body);
+                res.status(201).send(user);
+                
+            } catch (error) {
+                console.error(error);
+                res.status(500).send({message:"There was a problem trying to sign up user."});
 
-        }
-    },
+            }
+        },
     async login(req,res){
         try {
             const user = await User.findOne({
                 where:{
-                    email: req.body.email
+                    email: req.body.Email
                 }
             });
-            const isMatch = await bcrypt.compare(req.body.password, user.password);
+            const isMatch = await bcrypt.compare(req.body.Password, user.Password);
             if(!isMatch){
                 throw new Error("Revise your credentials.")
             }
             const token = jwt.sign({id: user.id}, "holaAmigos");
-            await Token.create({token, userId: user.id, revoked: false})
+            await Token.create({Token, UserId: user.id, Revoked: false})
             res.send({
                 user, 
                 token
@@ -55,7 +55,7 @@ const userController = {
         try {
             await User.destroy({
                 where:{
-                    email: req.body.email
+                    email: req.body.Email
                 }
             });
             res.status(201).send({message:"User successfully deleted."})

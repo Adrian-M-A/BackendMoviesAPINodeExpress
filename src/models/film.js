@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Film = sequelize.define('Film', {
     Title: DataTypes.STRING,
-    Overview: DataTypes.STRING,
+    Overview: DataTypes.TEXT,
     PosterPath: DataTypes.STRING,
     VoteAverage: DataTypes.FLOAT
   }, {});
