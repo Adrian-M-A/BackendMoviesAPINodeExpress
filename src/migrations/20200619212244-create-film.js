@@ -1,42 +1,34 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Orders', {
+    return queryInterface.createTable('Films', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      UserId: {
-        type: Sequelize.INTEGER
+      Title: {
+        type: Sequelize.STRING
       },
-      FilmId: {
-        type: Sequelize.INTEGER
+      Overview: {
+        type: Sequelize.TEXT
       },
-      OrderDate: {
-        type: Sequelize.DATE
+      PosterPath: {
+        type: Sequelize.STRING
       },
-      Devolution: {
-        type: Sequelize.DATE
-      },
-      Price: {
+      VoteAverage: {
         type: Sequelize.FLOAT
       },
-      Days: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Orders');
+    return queryInterface.dropTable('Films');
   }
 };

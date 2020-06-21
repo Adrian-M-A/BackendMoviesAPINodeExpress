@@ -1,15 +1,18 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
-    customerId: DataTypes.INTEGER,
-    filmId: DataTypes.INTEGER,
-    orderDate: DataTypes.DATE,
-    devolution: DataTypes.DATE,
-    price: DataTypes.FLOAT,
-    days: DataTypes.INTEGER
+    UserId: DataTypes.INTEGER,
+    FilmId: DataTypes.INTEGER,
+    OrderDate: DataTypes.DATE,
+    Devolution: DataTypes.DATE,
+    Price: DataTypes.FLOAT,
+    Days: DataTypes.INTEGER
   }, {});
   Order.associate = function(models) {
-    // associations can be defined here
+    Order.belongsTo(models.User);
+    Order.belongsToMany(models.Film, {
+      through: models.FilmOrder
+  });
   };
   return Order;
 };
