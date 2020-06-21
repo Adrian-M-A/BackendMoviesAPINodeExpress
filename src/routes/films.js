@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const filmController = require("../controllers/filmController");
+const FilmController = require("../controllers/filmController");
 
-router.get("/allFilms", filmController.allFilms);
-router.get("/filmsId", filmController.filmsId);
-router.get("/filmsTitle", filmController.filmsTitle);
+router.get("/allFilms", FilmController.allFilms);
+router.get("/filmsId/:id", FilmController.filmsId);
+router.get("/filmsTitle", FilmController.filmsTitle);
 
 module.exports = router;

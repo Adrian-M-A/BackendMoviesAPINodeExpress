@@ -1,8 +1,8 @@
-const {film} = require("../models")
+const {Film} = require("../models")
 
-const filmController = {
+const FilmController = {
     allFilms(req,res){
-        film.findAll({})
+        Film.findAll({})
         .then(films => res.send(films))
         .catch(error => {
             console.error(error);
@@ -10,7 +10,8 @@ const filmController = {
         })
     },
     filmsId(req,res){
-        film.findAll(req.body,  {
+        const { id } = req.params;
+        Film.findOne({
             where: {
                 id: id
             }
@@ -22,9 +23,9 @@ const filmController = {
         })
     },
     filmsTitle(req,res){
-        film.findAll(req.body, {
+        Film.findOne({
             where:{
-                Title
+                Title: req.body.Title
             }
         })
         .then(films => res.send(films))
@@ -34,4 +35,4 @@ const filmController = {
         })
     }
 }
-module.exports = filmController;
+module.exports = FilmController;

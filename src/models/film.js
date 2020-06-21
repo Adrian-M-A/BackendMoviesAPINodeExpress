@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     VoteAverage: DataTypes.FLOAT
   }, {});
   Film.associate = function(models) {
-    // associations can be defined here
+    Film.belongsToMany(models.Order, {
+      through: models.FilmOrder
+  });
   };
   return Film;
 };

@@ -8,9 +8,9 @@ const auth = async(req,res,next) => {
         const user = await User.findByPk(payload.id);
         const tokenFound = await Token.findOne({
             where:{
-                token: token, 
-                userId: payload.id,
-                revoked: false
+                Token: token, 
+                UserId: payload.id,
+                Revoked: false
             }
         })
         if(!user || !tokenFound){
@@ -29,10 +29,9 @@ const auth = async(req,res,next) => {
     }
 }
 const isAdmin =(req,res,next) => {
-    if(req.user.role !== "admin"){
+    if(req.user.Role !== "admin"){
         return res.status(403).send({
-            message:"You are not authorized.",
-            error
+            message:"You are not authorized."
         })
     }
     next();

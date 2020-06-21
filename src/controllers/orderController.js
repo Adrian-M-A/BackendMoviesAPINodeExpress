@@ -4,8 +4,7 @@ const orderController= {
     create(req, res) {
         Order.create(req.body)
         .then(order => {
-            order.addUser(req.body.CustomerId)
-            order.addMovie(req.body.MovieId)
+            order.addFilm(req.body.FilmId)
             res.status(201).send(order)
         })
         .catch(error => {

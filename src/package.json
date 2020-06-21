@@ -11,8 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/Adrian-M-A/BackendMoviesAPINodeExpress.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Adrián M.A.",
+  "license": "GNU3",
   "bugs": {
     "url": "https://github.com/Adrian-M-A/BackendMoviesAPINodeExpress/issues"
   },
