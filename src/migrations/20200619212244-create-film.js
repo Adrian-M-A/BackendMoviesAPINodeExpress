@@ -20,6 +20,12 @@ module.exports = {
       VoteAverage: {
         type: Sequelize.FLOAT
       },
+      Popularity: {
+        type: Sequelize.FLOAT
+      },
+      ReleaseDate: {
+        type: Sequelize.DATE
+      },
       createdAt: {
         type: Sequelize.DATE
       },

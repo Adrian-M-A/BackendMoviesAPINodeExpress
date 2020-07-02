@@ -4,7 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     Title: DataTypes.STRING,
     Overview: DataTypes.TEXT,
     PosterPath: DataTypes.STRING,
-    VoteAverage: DataTypes.FLOAT
+    VoteAverage: DataTypes.FLOAT,
+    Popularity: DataTypes.FLOAT,
+    ReleaseDate: DataTypes.DATE
   }, {});
   Film.associate = function(models) {
     Film.belongsToMany(models.Order, {

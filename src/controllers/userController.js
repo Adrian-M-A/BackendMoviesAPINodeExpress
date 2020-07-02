@@ -6,7 +6,7 @@ const userController = {
     profile(req,res){
         User.findOne({
             where:{
-                email: req.body.Email
+                email: req.body.email
             }
         })
         .then(users => res.send(users))
@@ -17,9 +17,20 @@ const userController = {
     },
     async signup(req,res){
         try {
+            console.log(req.body)
+            const checkUser = await User.findOne({
+                where:{
+                    email: req.body.Email
+                }
+            });
+            if (checkUser){
+                res.status(400).send({message: "You cannot register with this email."})
+            }
+
             const hash = await bcrypt.hash(req.body.Password, 10);
             req.body.Password = hash;
             const user = await User.create(req.body);
+            console.log(user);
             res.status(201).send(user);
             
         } catch (error) {
