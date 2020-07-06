@@ -12,7 +12,7 @@ const userController = {
         .then(users => res.send(users))
         .catch(error => {
             console.error(error);
-            res.status(500).send({message:"There was a problem trying to get users."});
+            res.status(500).send({message:"There was a problem trying to get user."});
         })
     },
     async signup(req,res){
@@ -73,6 +73,39 @@ const userController = {
         } catch (error) {
             console.error(error);
             res.status(500).send({message:"There was a problem trying to delete user."})
+        }
+    },
+    async logout(req, res) {
+        try {
+            await Token.destroy({
+                where: {
+                    Token: req.headers.authorization
+                }
+            });
+            res.send({ message: 'Successfully logged out' })
+        } catch (error) {
+            console.error(error)
+            res.status(500).send({
+                message: 'There was an error trying to logout the user',
+                error
+            });
+        }
+    },
+
+    async update(req, res) {
+        try {
+            const user = await User.update({
+                where: {
+                    Email: req.body.Email
+                }
+            });
+            res.status(201).send(user);
+        } catch (error) {
+            console.error(error)
+            res.status(500).send({
+                message:"There was an error trying to update user.",
+                error
+            });
         }
     }
 }
